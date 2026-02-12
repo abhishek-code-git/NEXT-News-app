@@ -123,10 +123,10 @@ export function CategoryManager() {
       }
       setIsDialogOpen(false);
       resetForm();
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({ 
         title: "Error", 
-        description: error.message || "Failed to save category.",
+        description: error instanceof Error ? error.message : "Failed to save category.",
         variant: "destructive"
       });
     }
