@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Newspaper, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
@@ -9,9 +10,11 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <img 
-                src="/logo.png" 
-                alt="New Digital India" 
+              <Image
+                src="/logo.png"
+                alt="New Digital India"
+                width={40}
+                height={40}
                 className="w-10 h-10 rounded-lg object-cover"
               />
               <span className="font-display text-2xl font-bold">New Digital India</span>

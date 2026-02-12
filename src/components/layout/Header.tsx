@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Search, Menu, X, Newspaper, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -46,9 +47,11 @@ export function Header({ onSearch, searchQuery = "" }: HeaderProps) {
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <img 
-              src="/logo.png" 
-              alt="New Digital India" 
+            <Image
+              src="/logo.png"
+              alt="New Digital India"
+              width={40}
+              height={40}
               className="w-10 h-10 rounded-lg object-cover"
             />
             <div>

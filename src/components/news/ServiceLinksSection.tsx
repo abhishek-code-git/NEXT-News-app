@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { useServiceLinks } from "@/hooks/useServiceLinks";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -53,15 +54,13 @@ export function ServiceLinksSection() {
               <div className="flex items-center gap-3 mb-2">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors overflow-hidden">
                   {isCustomIcon ? (
-                    <img 
-                      src={link.icon!} 
+                    <Image
+                      src={link.icon!}
                       alt={link.title}
+                      width={40}
+                      height={40}
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.parentElement!.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>';
-                      }}
+                      unoptimized
                     />
                   ) : Icon ? (
                     <Icon className="h-5 w-5" />

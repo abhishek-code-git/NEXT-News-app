@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ExternalLink, Clock, Pin, Zap } from "lucide-react";
 import { NewsArticle } from "@/types/news";
 import { Badge } from "@/components/ui/badge";
@@ -21,10 +22,13 @@ export function NewsCard({ article, variant = "default" }: NewsCardProps) {
       >
         <div className="relative aspect-video md:aspect-[21/9] overflow-hidden">
           {article.image_url ? (
-            <img
+            <Image
               src={article.image_url}
               alt={article.headline}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 66vw"
+              unoptimized
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
@@ -108,12 +112,8 @@ export function NewsCard({ article, variant = "default" }: NewsCardProps) {
           </div>
         </div>
         {article.image_url && (
-          <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
-            <img
-              src={article.image_url}
-              alt=""
-              className="w-full h-full object-cover"
-            />
+          <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+            <Image src={article.image_url} alt="" fill className="object-cover" sizes="80px" unoptimized />
           </div>
         )}
       </a>
@@ -129,10 +129,13 @@ export function NewsCard({ article, variant = "default" }: NewsCardProps) {
     >
       <div className="relative aspect-video overflow-hidden bg-muted">
         {article.image_url ? (
-          <img
+          <Image
             src={article.image_url}
             alt={article.headline}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+            unoptimized
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import { Plus, Pencil, Trash2, ExternalLink, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -278,13 +279,13 @@ export function ServiceLinkManager() {
                   {customIconUrl && (
                     <div className="flex items-center gap-2 mt-2">
                       <span className="text-sm text-muted-foreground">Preview:</span>
-                      <img 
-                        src={customIconUrl} 
-                        alt="Icon preview" 
+                      <Image
+                        src={customIconUrl}
+                        alt="Icon preview"
+                        width={32}
+                        height={32}
                         className="w-8 h-8 object-contain rounded"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/placeholder.svg';
-                        }}
+                        unoptimized
                       />
                     </div>
                   )}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import { Plus, Pencil, Trash2, ExternalLink, Pin, Zap, Eye, EyeOff, RefreshCw, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -417,10 +418,13 @@ export function ArticleManager() {
                     <TableCell>
                       <div className="flex items-start gap-3">
                         {article.image_url ? (
-                          <img 
-                            src={article.image_url} 
-                            alt="" 
+                          <Image
+                            src={article.image_url}
+                            alt=""
+                            width={48}
+                            height={48}
                             className="w-12 h-12 object-cover rounded flex-shrink-0"
+                            unoptimized
                           />
                         ) : (
                           <div className="w-12 h-12 bg-muted rounded flex-shrink-0" />
