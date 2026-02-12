@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FileText, FolderOpen, Eye, Zap } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAllNewsArticles, useAllCategories } from "@/hooks/useNews";
@@ -48,7 +49,7 @@ export function AdminDashboard() {
       <div>
         <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
         <p className="text-muted-foreground mt-1">
-          Welcome back! Here's an overview of your news platform.
+          Welcome back! Here&apos;s an overview of your news platform.
         </p>
       </div>
 
@@ -88,10 +89,13 @@ export function AdminDashboard() {
                   className="flex items-start gap-4 p-3 rounded-lg hover:bg-accent transition-colors"
                 >
                   {article.image_url ? (
-                    <img 
-                      src={article.image_url} 
-                      alt="" 
+                    <Image
+                      src={article.image_url}
+                      alt=""
+                      width={64}
+                      height={64}
                       className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                      unoptimized
                     />
                   ) : (
                     <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">
