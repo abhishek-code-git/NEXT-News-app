@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import {
   LayoutDashboard,
@@ -63,7 +65,14 @@ export default function Admin() {
             {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
           <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="New Digital India" className="w-8 h-8 rounded-lg object-cover" />
+            <Image
+              src="/logo.png"
+              alt="New Digital India"
+              width={32}
+              height={32}
+              className="w-8 h-8 rounded-lg object-cover"
+              priority
+            />
             <span className="font-bold">Admin</span>
           </div>
         </div>
@@ -79,13 +88,19 @@ export default function Admin() {
         >
           <div className="flex flex-col h-full">
             <div className="p-4 border-b border-border hidden lg:block">
-              <a href="/" className="flex items-center gap-2">
-                <img src="/logo.png" alt="New Digital India" className="w-10 h-10 rounded-lg object-cover" />
+              <Link href="/" className="flex items-center gap-2">
+                <Image
+                  src="/logo.png"
+                  alt="New Digital India"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-lg object-cover"
+                />
                 <div>
                   <h1 className="font-bold text-lg">New Digital India</h1>
                   <p className="text-xs text-muted-foreground">Admin Panel</p>
                 </div>
-              </a>
+              </Link>
             </div>
 
             <nav className="flex-1 p-4 space-y-1">

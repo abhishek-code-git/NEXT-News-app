@@ -164,7 +164,9 @@ const Index = ({ initialCategory, initialSearch }: IndexPageProps) => {
                     ? "Latest News"
                     : `${categoryParam.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())} News`}
                 </h2>
-                {searchQuery && <p className="text-muted-foreground">Showing results for "{searchQuery}"</p>}
+                {searchQuery && (
+                  <p className="text-muted-foreground">Showing results for &quot;{searchQuery}&quot;</p>
+                )}
               </div>
               <CategoryFilter selectedCategory={categoryParam} onCategoryChange={handleCategoryChange} />
             </section>
