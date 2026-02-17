@@ -19,6 +19,7 @@ export function useNewsArticles(filters?: NewsFilters) {
   return useQuery({
     queryKey: ["news", filters],
     queryFn: () => fetchNewsArticles(filters),
+    keepPreviousData: true,
   });
 }
 

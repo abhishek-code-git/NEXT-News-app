@@ -13,7 +13,7 @@ export function NewsListSEO({ articles, category }: NewsListSEOProps) {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: articles.slice(0, 10).map((article, index) => ({
+    itemListElement: articles.map((article, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {

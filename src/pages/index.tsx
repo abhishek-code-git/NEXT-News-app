@@ -52,6 +52,8 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (con
     queryClient.prefetchQuery({ queryKey: ["service-links"], queryFn: fetchServiceLinks }),
   ]);
 
+  context.res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
@@ -97,8 +99,20 @@ const Index = ({ initialCategory, initialSearch }: IndexPageProps) => {
     router.push({ pathname: "/", query: nextQuery }, undefined, { shallow: true });
   };
 
-  const pinnedIds = new Set(pinnedNews?.map((a) => a.id) || []);
-  const filteredArticles = articles?.filter((a) => !pinnedIds.has(a.id)) || [];
+  const pinnedIds = useMemo(() => new Set(pinnedNews?.map((a) => a.id) || []), [pinnedNews]);
+  const filteredArticles = useMemo(
+    () => articles?.filter((a) => !pinnedIds.has(a.id)) || [],
+    [articles, pinnedIds],
+  );
+  const seoArticles = useMemo(() => {
+    const combined = [...(pinnedNews || []), ...(articles || [])];
+    const seen = new Set<string>();
+    return combined.filter((article) => {
+      if (seen.has(article.id)) return false;
+      seen.add(article.id);
+      return true;
+    });
+  }, [pinnedNews, articles]);
 
   const getCategoryTitle = () => {
     if (categoryParam === "all") return "Latest News & Updates from India";
@@ -133,8 +147,8 @@ const Index = ({ initialCategory, initialSearch }: IndexPageProps) => {
         canonicalUrl={categoryParam === "all" ? "/" : `/?category=${categoryParam}`}
       />
 
-      {filteredArticles.length > 0 && (
-        <NewsListSEO articles={filteredArticles} category={categoryParam !== "all" ? categoryParam : undefined} />
+      {seoArticles.length > 0 && (
+        <NewsListSEO articles={seoArticles} category={categoryParam !== "all" ? categoryParam : undefined} />
       )}
 
       <BreakingNewsTicker />
