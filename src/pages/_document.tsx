@@ -3,7 +3,12 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-4415456165825947"
+        />
+      </Head>
       <body>
         <Main />
         <NextScript />
@@ -11,4 +16,3 @@ export default function Document() {
     </Html>
   );
 }
-
